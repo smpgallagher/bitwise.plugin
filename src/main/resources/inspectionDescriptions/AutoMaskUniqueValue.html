@@ -1,0 +1,25 @@
+<html>
+<body>
+<p>
+    Reports duplicate constant values in the companion object of a Kotlin class annotated with <code>@AutoMask</code>.
+</p>
+<p>
+    The inspection evaluates integer and bitwise constant expressions, then highlights constants whose resolved values
+    match an earlier constant in the same companion object.
+</p>
+<p>
+    Duplicate mask values can make generated masks ambiguous or cause the same bit flag to be used for multiple
+    meanings.
+</p>
+<pre><code>
+@AutoMask
+class Permissions {
+    companion object {
+        const val READ = 1 shl 0
+        const val WRITE = 1
+    }
+}
+</code></pre>
+<!-- tooltip end -->
+</body>
+</html>

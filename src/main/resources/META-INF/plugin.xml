@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <id>com.bitwise.plugin</id>
+    <name>Bitwise Viewer</name>
+    <vendor email="support@bitwise.com" url="https://github.com/bitwise-viewer">Bitwise Viewer</vendor>
+
+    <description><![CDATA[
+        <p>Displays inline inlay hints for bitwise constant expressions...</p>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <localInspection
+                language="kotlin"
+                displayName="Duplicate AutoMask value"
+                groupPath="Bitwise"
+                groupName="Bitwise plugin"
+                shortName="AutoMaskUniqueValue"
+                enabledByDefault="true"
+                level="WARNING"
+                implementationClass="com.bitwise.plugin.AutoMaskUniqueValueInspection"/>
+
+        <applicationService
+                serviceImplementation="com.bitwise.plugin.BitwisePluginSettings"/>
+
+        <codeInsight.inlayProvider
+                language="JAVA"
+                implementationClass="com.bitwise.plugin.BitwiseInlayHintsProvider"/>
+
+        <codeInsight.inlayProvider
+                language="kotlin"
+                implementationClass="com.bitwise.plugin.BitwiseInlayHintsProvider"/>
+
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.bitwise.plugin.BitwisePluginConfigurable"
+                id="com.bitwise.plugin.BitwisePluginConfigurable"
+                displayName="Bitwise Viewer"/>
+    </extensions>
+</idea-plugin>
